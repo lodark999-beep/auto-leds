@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED Headlights Product Catalog - AUTO-LEDs</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Products Page Specific Styles */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') 
+                        center/cover no-repeat;
+            padding: 6rem 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+        }
+        
+        /* Series Filter */
+        .series-filter-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .series-filter-title {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .series-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+        }
+        
+        /* Product Card Enhancements */
+        .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .product-card {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-image {
+            height: 400px;
+        }
+        
+        .product-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .product-features li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        
+        .product-features li:before {
+            content: "•";
+            color: #4da6ff;
+            position: absolute;
+            left: 0;
+        }
+        
+        .view-details {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: background 0.3s;
+            margin-top: auto;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+        }
+        
+        .view-details:hover {
+            background: #333;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .series-filter {
+                justify-content: center;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-icon">🔦</span> AUTO-LEDs
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Products.html">Product Series</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="Technical Help.html">Technical Help</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>High-Performance LED Headlight Series</h1>
+            <p>Providing various models of high-brightness, long-life LED headlight solutions for all types of vehicles</p>
+        </div>
+    </section>
+
+    <!-- Series Filter -->
+    <section class="container" id="products">
+        <div class="series-filter-container">
+            <div class="series-filter-title">Filter by Series</div>
+            <div class="series-filter">
+                <button class="filter-btn active" data-filter="all">All Series</button>
+                <button class="filter-btn" data-filter="y-series">Y Series</button>
+                <button class="filter-btn" data-filter="n-series">N Series</button>
+                <button class="filter-btn" data-filter="l-series">L Series</button>
+                <button class="filter-btn" data-filter="p-series">P Series</button>
+                <button class="filter-btn" data-filter="d-series">D Series</button>
+                <button class="filter-btn" data-filter="t-series">T Series</button>
+                <button class="filter-btn" data-filter="x-series">X Series</button>
+                <button class="filter-btn" data-filter="gt-series">GT Series</button>
+                <button class="filter-btn" data-filter="h-series">H Series</button>
+                <button class="filter-btn" data-filter="other">Other Series</button>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="products-grid">
+            <!-- Y1 Series -->
+            <div class="product-card" data-series="y-series">
+                <div class="product-image">
+                    <img src="images/Y1.jpg" alt="Y1 Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Y1 Series</h3>
+                    <p class="product-specs">75W / 8000LM</p>
+                    <ul class="product-features">
+                        <li>Advanced Smart Drive</li>
+                        <li>200% Brightness Improvement</li>
+                        <li>Excellent Light Concentration</li>
+                    </ul>
+                    <a href="Y1.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- Y2 Series -->
+            <div class="product-card" data-series="y-series">
+                <div class="product-image">
+                    <img src="images/Y2.jpg" alt="Y2 Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Y2 Series</h3>
+                    <p class="product-specs">140W / 20000LM</p>
+                    <ul class="product-features">
+                        <li>Built-in New Generation Smart Chip</li>
+                        <li>Stable Wide Voltage, No Flickering</li>
+                        <li>Strong Water and Dust Resistance</li>
+                    </ul>
+                    <a href="Y2.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- N2 Series -->
+            <div class="product-card" data-series="n-series">
+                <div class="product-image">
+                    <img src="images/N2.jpg" alt="N2 Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">N2 Series</h3>
+                    <p class="product-specs">140W / 16000LM</p>
+                    <ul class="product-features">
+                        <li>Hydraulic Fan Cooling System</li>
+                        <li>High-Efficiency Heat Dissipation</li>
+                        <li>Wide Voltage Compatibility</li>
+                    </ul>
+                    <a href="N2.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- L3 Series -->
+            <div class="product-card" data-series="l-series">
+                <div class="product-image">
+                    <img src="images/L3.jpg" alt="L3 Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">L3 Series</h3>
+                    <p class="product-specs">40W / 4000LM</p>
+                    <ul class="product-features">
+                        <li>Intelligent Temperature Control</li>
+                        <li>Stable Voltage, No Flickering</li>
+                        <li>Operating Temperature: -40°C~80°C</li>
+                    </ul>
+                    <a href="L3.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- L4 Series -->
+            <div class="product-card" data-series="l-series">
+                <div class="product-image">
+                    <img src="images/L4.jpg" alt="L4 Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">L4 Series</h3>
+                    <p class="product-specs">60W / 6000LM</p>
+                    <ul class="product-features">
+                        <li>Small Size, High Power</li>
+                        <li>6500K White Light</li>
+                        <li>Plug and Play, Easy Installation</li>
+                    </ul>
+                    <a href="L4.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- L5 Series -->
+            <div class="product-card" data-series="l-series">
+                <div class="product-image">
+                    <img src="images/L5.jpg" alt="L5 Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">L5 Series</h3>
+                    <p class="product-specs">180W / 20000LM</p>
+                    <ul class="product-features">
+                        <li>Long-Distance Laser Illumination, No Dark Areas</li>
+                        <li>3.5mm Dual Copper Tube Heat Dissipation</li>
+                        <li>Built-in Smart Chip, Intelligent Temperature Control</li>
+                    </ul>
+                    <a href="L5.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- P12 Series -->
+            <div class="product-card" data-series="p-series">
+                <div class="product-image">
+                    <img src="images/P12.jpg" alt="P12 Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">P12 Series</h3>
+                    <p class="product-specs">240W / 24000LM</p>
+                    <ul class="product-features">
+                        <li>High Brightness LED Headlights</li>
+                        <li>Three Liquid-Cooled Copper Tubes</li>
+                        <li>Imported Super Large Chips</li>
+                    </ul>
+                    <a href="P12.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- T1 Series -->
+            <div class="product-card" data-series="t-series">
+                <div class="product-image">
+                    <img src="images/T1.jpg" alt="T1 Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">T1 Series</h3>
+                    <p class="product-specs">100W / 10000LM</p>
+                    <ul class="product-features">
+                        <li>HD Fisheye Lens</li>
+                        <li>Brighter 3570 LED Chip</li>
+                        <li>360° Adjustable Beam Pattern</li>
+                    </ul>
+                    <a href="T1.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- X3 PRO Series -->
+            <div class="product-card" data-series="x-series">
+                <div class="product-image">
+                    <img src="images/X3 PRO.jpg" alt="X3PRO Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">X3 PRO Series</h3>
+                    <p class="product-specs">120W / 12000LM</p>
+                    <ul class="product-features">
+                        <li>Teijin Optical Grade PC, High Light Transmittance, UV Resistant, Anti-Yellowing</li>
+                        <li>Aviation Aluminum Alloy Body</li>
+                        <li>High Temperature Resistance, High Reflectivity</li>
+                    </ul>
+                    <a href="X3 PRO.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- GT9 Series (200W) -->
+            <div class="product-card" data-series="gt-series">
+                <div class="product-image">
+                    <img src="images/GT9.jpg" alt="GT9 Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">GT9 Series (200W)</h3>
+                    <p class="product-specs">200W / 22000LM</p>
+                    <ul class="product-features">
+                        <li>Ultra-Bright LED Bead Design</li>
+                        <li>28000 RPM Strong DC Fan</li>
+                        <li>IP68 Waterproof</li>
+                    </ul>
+                    <a href="GT9.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- D Series (90W) -->
+            <div class="product-card" data-series="d-series">
+                <div class="product-image">
+                    <img src="images/D-90W.jpg" alt="D series 90W Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">D Series (90W)</h3>
+                    <p class="product-specs">90W / 10000LM</p>
+                    <ul class="product-features">
+                        <li>500% High Brightness</li>
+                        <li>Built-in Intelligent Decoding Driver</li>
+                        <li>Efficient Cooling System</li>
+                    </ul>
+                    <a href="D90.html" class="view-details">View Details</a>
+                </div>
+            </div>
+
+            <!-- D Series (220W) -->
+            <div class="product-card" data-series="d-series">
+                <div class="product-image">
+                    <img src="images/D-22W.jpg" alt="D series 220W Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">D Series (220W)</h3>
+                    <p class="product-specs">220W / 22000ML</p>
+                    <ul class="product-features">
+                        <li>500% High Brightness</li>
+                        <li>Built-in Intelligent Decoding Driver</li>
+                        <li>Efficient Cooling System</li>
+                    </ul>
+                    <a href="D220.html" class="view-details">View Details</a>
+                </div>
+            </div>
+            
+            <!-- D Series (260W) -->
+            <div class="product-card" data-series="d-series">
+                <div class="product-image">
+                    <img src="images/D-260W.jpg" alt="D Series 260W LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">D Series (260W)</h3>
+                    <p class="product-specs">260W / 22000ML</p>
+                    <ul class="product-features">
+                        <li>500% High Brightness</li>
+                        <li>Built-in Intelligent Decoding Driver</li>
+                        <li>Efficient Cooling System</li>
+                    </ul>
+                    <a href="D260.html" class="view-details">View Details</a>
+                </div>
+            </div>
+            
+            <!-- H15 Series -->
+            <div class="product-card" data-series="h-series">
+                <div class="product-image">
+                    <img src="images/H15.jpg" alt="H15 Series LED Headlight">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">H15 Series</h3>
+                    <p class="product-specs">70W/Set / 7000LM</p>
+                    <ul class="product-features">
+                        <li>3510 Turbo Charged Fan</li>
+                        <li>Optimized for H15 Socket</li>
+                        <li>Excellent Heat Dissipation</li>
+                    </ul>
+                    <a href="H15.html" class="view-details">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+    <footer id="contact2">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">AUTO-LEDs</div>
+          <p>Providing High-Performance LED Headlight Solutions</p>
+          <div class="contact-info">
+            <p>Email: wys2704@gmail.com</p>
+          </div>
+          <a href="https://wa.me/8613725549640" class="whatsapp-contact"> <span class="whatsapp-icon">💬</span> WhatsApp Michael: 86 13725549640 </a> <a href="https://wa.me/8613430782337" class="whatsapp-contact"> <span class="whatsapp-icon">💬</span> WhatsApp David: 86 13430782337 </a>
+          <p style="margin-top: 2rem; font-size: 0.9rem;">AUTO-LEDs Product Catalog &copy; 2025</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Common JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

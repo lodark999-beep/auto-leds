@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T1 Series LED Headlight - AUTO-LEDs</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: #4da6ff;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin: 2rem 0;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid #1a1a1a;
+            border-radius: 30px;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .back-button:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .product-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .product-title {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-subtitle {
+            font-size: 1.2rem;
+            color: #4da6ff;
+            font-weight: 500;
+        }
+        
+        .product-detail {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+        }
+        
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 2rem;
+        }
+        
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .image-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+        
+        .image-description {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #4da6ff;
+        }
+        
+        .image-description h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+        
+        .image-description p {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .specs-sidebar {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .specs-sidebar h3 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #4da6ff;
+        }
+        
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .spec-table th, .spec-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .spec-table th {
+            background-color: transparent;
+            font-weight: 600;
+            color: #444;
+            width: 40%;
+        }
+        
+        .spec-table td {
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+        
+        .compatibility {
+            margin-top: 1.5rem;
+        }
+        
+        .compatibility h4 {
+            margin-bottom: 0.8rem;
+            color: #1a1a1a;
+        }
+        
+        .compatibility p {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            color: #555;
+        }
+        
+        /* Multi-frame content sections */
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #4da6ff;
+            color: #1a1a1a;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(AUTO-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            color: #4da6ff;
+        }
+        
+        .feature-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .product-features li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            color: #4da6ff;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table th {
+            background-color: #1a1a1a;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .highlight {
+            background-color: rgba(77, 166, 255, 0.1) !important;
+            font-weight: 600;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info {
+            margin: 1.5rem 0;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .whatsapp-contact {
+            display: inline-flex;
+            align-items: center;
+            background: #25D366;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .product-detail-grid {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+            }
+            
+            .image-gallery {
+                padding: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .product-title {
+                font-size: 2rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-icon">🔦</span> AUTO-LEDs
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Products.html">Product Series</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="Technical Help.html">Technical Help</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Product Details -->
+    <section class="container">
+        <a href="Products.html" class="back-button">&larr; Back to Products</a>
+        
+        <div class="product-header">
+            <h1 class="product-title">T1 Series LED Headlight</h1>
+            <p class="product-subtitle">90W / 7500LM • Advanced Fisheye Lens Technology</p>
+        </div>
+        
+        <div class="product-detail-grid">
+            <div>
+                <div class="product-detail">
+                    <div class="image-gallery">
+                        <!-- Image 1 with description -->
+                        <div class="image-item">
+                            <div class="image-container">
+                                <img src="images/T13.jpg" alt="T1 Series LED Headlight - Front View">
+                            </div>
+                            <div class="image-description">
+                                <h3>HD Fisheye Lens Technology</h3>
+                                <p>The T1 Series features innovative High-Definition Fisheye Lens technology that revolutionizes LED headlight performance. This advanced optical design concentrates light for maximum intensity and clarity while providing broader illumination coverage without sacrificing distance. The precise optical engineering minimizes glare for oncoming traffic while delivering sharp, defined beam patterns.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Image 2 with description -->
+                        <div class="image-item">
+                            <div class="image-container">
+                                <img src="images/T12.jpg" alt="T1 Series LED Headlight - Side View">
+                            </div>
+                            <div class="image-description">
+                                <h3>Brighter 3570 LED Chip</h3>
+                                <p>Equipped with advanced 3570 LED chips, the T1 Series delivers exceptional brightness and efficiency. These high-performance chips provide superior illumination while maintaining energy efficiency, ensuring optimal performance without excessive power consumption. The advanced chip technology extends the lifespan of the headlights while maintaining consistent light output throughout their operational life.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Image 3 with description -->
+                        <div class="image-item">
+                            <div class="image-container">
+                                <img src="images/T11.jpg" alt="T1 Series LED Headlight - HD Fisheye Lens">
+                            </div>
+                            <div class="image-description">
+                                <h3>360° Adjustable Beam Pattern</h3>
+                                <p>Experience unparalleled flexibility with the T1 Series' full 360° rotation capability. This feature allows for precise beam alignment and optimal light distribution regardless of your vehicle's headlight design. Unlike fixed-position LED bulbs, this full rotation capability ensures optimal performance and compliance with road safety standards, providing the perfect beam pattern for any vehicle.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Image 4 with description -->
+                        <div class="image-item">
+                            <div class="image-container">
+                                <img src="images/T14.jpg" alt="T1 Series LED Headlight - Beam Adjustment">
+                            </div>
+                            <div class="image-description">
+                                <h3>High Performance Output</h3>
+                                <p>With 100W power delivering 10000LM brightness, the T1 Series provides excellent road illumination for enhanced driving safety. The combination of high-performance LED chips and advanced fisheye lens optical design ensures optimal beam pattern and road coverage. Experience crystal clear visibility with wide horizontal spread for excellent peripheral visibility and long-distance projection for enhanced safety at high speeds.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Features Section -->
+                <div class="content-section">
+                    <h2 class="section-title">Key Features</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3>HD Fisheye Lens</h3>
+
+                            <p>High-definition fisheye lens technology for superior light focus and clarity</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💎</div>
+                            <h3>Brighter 3570 LED Chip</h3>
+                            <p>Advanced 3570 LED chips deliver exceptional brightness and efficiency</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔄</div>
+                            <h3>360° Adjustable Beam Pattern</h3>
+                            <p>Full rotation capability for precise beam alignment and optimal light distribution</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💡</div>
+                            <h3>High Performance</h3>
+                            <p>90W power delivers 7500LM brightness for excellent road illumination</p>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem;">Additional Features</h3>
+                    <ul class="product-features">
+                        <li>Precise cutoff line to prevent glare for oncoming traffic</li>
+                        <li>Wide horizontal spread for excellent peripheral visibility</li>
+                        <li>Long-distance projection for enhanced safety at high speeds</li>
+                        <li>Even light distribution with no dark spots or hotspots</li>
+                        <li>Customizable alignment to match any headlight housing design</li>
+                        <li>IP68 waterproof rating for all-weather reliability</li>
+                    </ul>
+                </div>
+                
+                <!-- Comparison Table -->
+                <div class="content-section">
+                    <h2 class="section-title">Performance Comparison</h2>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Standard Halogen</th>
+                                <th>T1 Series LED</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Brightness (Lumens)</td>
+                                <td>1,200 LM</td>
+                                <td class="highlight">7,500 LM</td>
+                            </tr>
+                            <tr>
+                                <td>Power Consumption</td>
+                                <td>55W</td>
+                                <td class="highlight">90W</td>
+                            </tr>
+                            <tr>
+                                <td>Lifespan</td>
+                                <td>1,000 hours</td>
+                                <td class="highlight">50,000 hours</td>
+                            </tr>
+                            <tr>
+                                <td>Color Temperature</td>
+                                <td>3,200K (Yellow)</td>
+                                <td class="highlight">6,000K (White)</td>
+                            </tr>
+                            <tr>
+                                <td>Start-up Time</td>
+                                <td>0.5-1 second</td>
+                                <td class="highlight">Instant</td>
+                            </tr>
+                            <tr>
+                                <td>Lens Technology</td>
+                                <td>Standard</td>
+                                <td class="highlight">HD Fisheye Lens</td>
+                            </tr>
+                            <tr>
+                                <td>Beam Adjustment</td>
+                                <td>Limited</td>
+                                <td class="highlight">360° Full Rotation</td>
+                            </tr>
+                            <tr>
+                                <td>LED Chip</td>
+                                <td>N/A</td>
+                                <td class="highlight">3570 High-Brightness</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Warranty Information -->
+                <div class="content-section">
+                    <h2 class="section-title">Warranty & Support</h2>
+                    <p>All T1 Series LED headlights come with a 3-year limited warranty covering manufacturing defects. Our customer support team is available to assist with any installation or technical questions.</p>
+                    
+                    <h3 style="margin-top: 1.5rem;">Warranty Coverage</h3>
+                    <ul class="product-features">
+                        <li>1-year limited warranty</li>
+                        <li>Free replacement for manufacturing defects</li>
+                        <li>Technical support available</li>
+                        <li>30-day money-back guarantee</li>
+                        <li>Lens performance guarantee</li>
+                        <li>Adjustment mechanism guarantee</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Sidebar with Specifications -->
+            <div>
+                <div class="specs-sidebar">
+                    <h3>Product Specifications</h3>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Luminous Flux</th>
+                            <td>7500LM</td>
+                        </tr>
+                        <tr>
+                            <th>Output Power</th>
+                            <td>90W</td>
+                        </tr>
+                        <tr>
+                            <th>Lifespan</th>
+                            <td>50000 Hours</td>
+                        </tr>
+                        <tr>
+                            <th>Voltage</th>
+                            <td>9–60V</td>
+                        </tr>
+                        <tr>
+                            <th>Color Temperature</th>
+                            <td>6000K</td>
+                        </tr>
+                        <tr>
+                            <th>LED Chip</th>
+                            <td>3570 High-Brightness Chip</td>
+                        </tr>
+                        <tr>
+                            <th>Waterproof Rating</th>
+                            <td>IP68</td>
+                        </tr>
+                        <tr>
+                            <th>Operating Temperature</th>
+                            <td>-40°C to 80°C</td>
+                        </tr>
+                        <tr>
+                            <th>Lens Type</th>
+                            <td>HD Fisheye Lens</td>
+                        </tr>
+                        <tr>
+                            <th>Beam Adjustment</th>
+                            <td>360° Full Rotation</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="compatibility">
+                        <h4>Compatible Vehicles</h4>
+                        <p>H4</p>
+                    </div>
+                </div>
+                
+                <!-- Installation Guide -->
+                <div class="specs-sidebar">
+                    <h3>Installation Guide</h3>
+                    <p>The T1 Series features advanced installation with 360° beam adjustment capability for precise alignment.</p>
+                    
+                    <h4 style="margin-top: 1.5rem;">Step-by-Step Installation</h4>
+                    <ol style="margin-left: 1.2rem; color: #555;">
+                        <li style="margin-bottom: 0.5rem;">Disconnect the vehicle battery for safety</li>
+                        <li style="margin-bottom: 0.5rem;">Remove the old headlight bulbs from their sockets</li>
+                        <li style="margin-bottom: 0.5rem;">Install the T1 Series LED bulbs - ensure proper seating</li>
+                        <li style="margin-bottom: 0.5rem;">Utilize the 360° rotation feature to align the beam pattern</li>
+                        <li style="margin-bottom: 0.5rem;">Secure the bulbs in the optimal position</li>
+                        <li style="margin-bottom: 0.5rem;">Reconnect the battery and test the lights</li>
+                        <li>Fine-tune the beam pattern if necessary</li>
+                    </ol>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #4da6ff;">
+                        <h4>Installation Tips</h4>
+                        <ul style="margin-left: 1.2rem; color: #555;">
+                            <li style="margin-bottom: 0.3rem;">Take advantage of the 360° rotation for perfect alignment</li>
+                            <li style="margin-bottom: 0.3rem;">Test beam pattern after installation for optimal performance</li>
+                            <li>Ensure the HD fisheye lens is clean before installation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">AUTO-LEDs</div>
+                <p>Providing High-Performance LED Headlight Solutions</p>
+                <div class="contact-info">
+                  <p>Email: wys2704@gmail.com</p>
+</div>
+                <a href="https://wa.me/8613725549640" class="whatsapp-contact">
+                    <span class="whatsapp-icon">💬</span> WhatsApp: 86 13725549640
+              </a>
+                <p style="margin-top: 2rem; font-size: 0.9rem;">AUTO-LEDs Product Catalog &copy; 2025</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

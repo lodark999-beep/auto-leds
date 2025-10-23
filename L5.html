@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H15 Series LED Headlight - AUTO-LEDs</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Product Page Specific CSS -->
+    <style>
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin: 2rem 0;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid #1a1a1a;
+            border-radius: 30px;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .back-button:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .product-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .product-title {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-subtitle {
+            font-size: 1.2rem;
+            color: #4da6ff;
+            font-weight: 500;
+        }
+        
+        .product-detail-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .main-content {
+            order: 1;
+        }
+        
+        .sidebar-content {
+            order: 2;
+        }
+        
+        .product-detail {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+        }
+        
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 2rem;
+        }
+        
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .image-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+        
+        .image-description {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #4da6ff;
+        }
+        
+        .image-description h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+        
+        .image-description p {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .specs-sidebar {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .specs-sidebar h3 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #4da6ff;
+        }
+        
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .spec-table th, .spec-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .spec-table th {
+            background-color: transparent;
+            font-weight: 600;
+            color: #444;
+            width: 40%;
+        }
+        
+        .spec-table td {
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+        
+        .compatibility {
+            margin-top: 1.5rem;
+        }
+        
+        .compatibility h4 {
+            margin-bottom: 0.8rem;
+            color: #1a1a1a;
+        }
+        
+        .compatibility p {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            color: #555;
+        }
+        
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #4da6ff;
+            color: #1a1a1a;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .product-features li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            color: #4da6ff;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table th {
+            background-color: #1a1a1a;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .highlight {
+            background-color: rgba(77, 166, 255, 0.1) !important;
+            font-weight: 600;
+        }
+        
+        @media (min-width: 768px) {
+            .product-detail-grid {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+            
+            .sidebar-content {
+                order: 2;
+            }
+            
+            .image-gallery {
+                padding: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .product-title {
+                font-size: 2rem;
+            }
+            
+            .image-gallery {
+                padding: 1rem;
+            }
+            
+            .specs-sidebar {
+                padding: 1.5rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+            }
+            
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .image-description {
+                padding: 1rem;
+            }
+            
+            .feature-card {
+                padding: 1.2rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.8rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <!-- Product Details -->
+    <!-- Footer -->
+
+<header>
+      <div class="container">
+        <nav>
+          <div class="logo"> <span class="logo-icon">🔦</span> AUTO-LEDs </div>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Products.html">Product Series</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="Technical Help.html">Technical Help</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+<section class="container"> <a href="Products.html" class="back-button">&larr; Back to Products</a>
+      <div class="product-header">
+        <h1 class="product-title">L5 Series LED Headlight</h1>
+        <p class="product-subtitle">110W / 12000LM • Advanced Laser Technology</p>
+      </div>
+      <div class="product-detail-grid">
+        <div>
+          <div class="product-detail">
+            <div class="image-gallery">
+              <!-- Image 1 with description -->
+              <div class="image-item">
+                <div class="image-container"> <img src="images/H15.jpg" alt="L5 Series LED Headlight - Front View"> </div>
+                <div class="image-description">
+                  <h3>Long-Distance Laser Illumination</h3>
+                  <p>The L5 Series features advanced laser LED technology that eliminates dark areas with superior long-range visibility. This cutting-edge illumination system provides exceptional road coverage and enhanced driving safety in all conditions.</p>
+                </div>
+              </div>
+              <!-- Image 2 with description -->
+              <div class="image-item">
+                <div class="image-container"> <img src="images/H151.jpg" alt="L5 Series LED Headlight - Side View"> </div>
+                <div class="image-description">
+                  <h3>3.5mm Dual Copper Tube Heat Dissipation</h3>
+                  <p>Engineered with an advanced cooling system featuring 3.5mm dual copper tubes for optimal thermal management. This innovative heat dissipation technology ensures sustained high performance and extends the LED lifespan even under demanding conditions.</p>
+                </div>
+              </div>
+              <!-- Image 3 with description -->
+              <div class="image-item">
+                <div class="image-container"> <img src="images/H154.jpg" alt="L5 Series LED Headlight - Back View"> </div>
+                <div class="image-description">
+                  <h3>Built-in Smart Chip Technology</h3>
+                  <p>The L5 Series incorporates an intelligent temperature control system with a built-in smart chip that automatically regulates performance for maximum efficiency. This smart technology optimizes power consumption while maintaining consistent brightness output.</p>
+                </div>
+              </div>
+              <!-- Image 4 with description -->
+              <div class="image-item">
+                <div class="image-container"> <img src="images/H152.jpg" alt="L5 Series LED Headlight - Beam Pattern"> </div>
+                <div class="image-description">
+                  <h3>Perfect Beam Pattern with No Dark Areas</h3>
+                  <p>Experience the revolutionary beam pattern technology that provides complete road coverage with no dark spots. The L5 Series delivers precise illumination with a crisp cutoff line, ensuring maximum visibility without blinding oncoming drivers.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Product Features Section -->
+          <div class="content-section">
+            <h2 class="section-title">Key Features</h2>
+            <div class="feature-grid">
+              <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Long-Distance Laser Illumination</h3>
+                <p>Advanced laser LED technology eliminates dark areas with superior long-range visibility</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">🔥</div>
+                <h3>Dual Copper Tube Heat Dissipation</h3>
+                <p>3.5mm dual copper tubes provide exceptional thermal management for sustained performance</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Built-in Smart Chip</h3>
+                <p>Intelligent temperature control system automatically regulates performance for maximum efficiency</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Ultra-High Brightness</h3>
+                <p>20000 lumens output for exceptional road illumination and enhanced driving safety</p>
+              </div>
+            </div>
+            <h3 style="margin-top: 2rem;">Additional Features</h3>
+            <ul class="product-features">
+              <li>No dark area technology for complete road coverage</li>
+              <li>High-Performance Laser LED chips</li>
+              <li>3.5mm Dual Copper Tube cooling system</li>
+              <li>IP68 Waterproof rating for all-weather performance</li>
+              <li>Instant illumination with no warm-up time</li>
+              <li>Wide voltage operation (9-60V)</li>
+            </ul>
+          </div>
+          <!-- Comparison Table -->
+          <div class="content-section">
+            <h2 class="section-title">Performance Comparison</h2>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Standard Halogen</th>
+                  <th>L5 Series LED</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Brightness (Lumens)</td>
+                  <td>1,200 LM</td>
+                  <td class="highlight">12,000 LM</td>
+                </tr>
+                <tr>
+                  <td>Power Consumption</td>
+                  <td>55W</td>
+                  <td class="highlight">110W</td>
+                </tr>
+                <tr>
+                  <td>Lifespan</td>
+                  <td>1,000 hours</td>
+                  <td class="highlight">50,000 hours</td>
+                </tr>
+                <tr>
+                  <td>Color Temperature</td>
+                  <td>3,200K (Yellow)</td>
+                  <td class="highlight">6,000K (White)</td>
+                </tr>
+                <tr>
+                  <td>Start-up Time</td>
+                  <td>0.5-1 second</td>
+                  <td class="highlight">Instant</td>
+                </tr>
+                <tr>
+                  <td>Heat Dissipation</td>
+                  <td>Passive</td>
+                  <td class="highlight">3.5mm Dual Copper Tube</td>
+                </tr>
+                <tr>
+                  <td>Beam Technology</td>
+                  <td>Standard</td>
+                  <td class="highlight">Laser Illumination</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Warranty Information -->
+          <div class="content-section">
+            <h2 class="section-title">Warranty & Support</h2>
+            <p>All L5 Series LED headlights come with a 1-year limited warranty covering manufacturing defects. Our customer support team is available to assist with any installation or technical questions.</p>
+            <h3 style="margin-top: 1.5rem;">Warranty Coverage</h3>
+            <ul class="product-features">
+              <li>1-year limited warranty</li>
+              <li>Free replacement for manufacturing defects</li>
+              <li>Technical support available</li>
+              <li>30-day money-back guarantee</li>
+              <li>Heat dissipation system guarantee</li>
+              <li>Laser illumination performance guarantee</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Sidebar with Specifications -->
+        <div>
+          <div class="specs-sidebar">
+            <h3>Product Specifications</h3>
+            <table class="spec-table">
+              <tr>
+                <th>Luminous Flux</th>
+                <td>12000LM</td>
+              </tr>
+              <tr>
+                <th>Output Power</th>
+                <td>110W</td>
+              </tr>
+              <tr>
+                <th>Lifespan</th>
+                <td>50000 Hours</td>
+              </tr>
+              <tr>
+                <th>Voltage</th>
+                <td>9–60V</td>
+              </tr>
+              <tr>
+                <th>Color Temperature</th>
+                <td>6000K</td>
+              </tr>
+              <tr>
+                <th>LED Chip</th>
+                <td>High-Performance Laser LED</td>
+              </tr>
+              <tr>
+                <th>Waterproof Rating</th>
+                <td>IP68</td>
+              </tr>
+              <tr>
+                <th>Operating Temperature</th>
+                <td>-40°C to 80°C</td>
+              </tr>
+              <tr>
+                <th>Heat Dissipation</th>
+                <td>3.5mm Dual Copper Tube</td>
+              </tr>
+              <tr>
+                <th>Control System</th>
+                <td>Built-in Smart Chip</td>
+              </tr>
+            </table>
+            <div class="compatibility">
+              <h4>Compatible Vehicles</h4>
+              <p>H1/H3/H4/H7/H11/9005/9006/9012</p>
+            </div>
+          </div>
+          <!-- Installation Guide -->
+          <div class="specs-sidebar">
+            <h3>Installation Guide</h3>
+            <p>Easy plug-and-play installation. The L5 Series LED headlights feature a straightforward installation process with no modifications required to your vehicle's electrical system.</p>
+            <h4 style="margin-top: 1.5rem;">Step-by-Step Installation</h4>
+            <ol style="margin-left: 1.2rem; color: #555;">
+              <li style="margin-bottom: 0.5rem;">Disconnect the vehicle battery for safety</li>
+              <li style="margin-bottom: 0.5rem;">Remove the old headlight bulbs from their sockets</li>
+              <li style="margin-bottom: 0.5rem;">Install the L5 Series LED bulbs - ensure proper alignment</li>
+              <li style="margin-bottom: 0.5rem;">Connect the built-in smart chip system</li>
+              <li style="margin-bottom: 0.5rem;">Ensure the dual copper tube heat dissipation system has adequate clearance</li>
+              <li>Adjust the beam pattern for optimal road coverage</li>
+            </ol>
+            <div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #4da6ff;">
+              <h4>Installation Tips</h4>
+              <ul style="margin-left: 1.2rem; color: #555;">
+                <li style="margin-bottom: 0.3rem;">Ensure the vehicle is turned off before starting</li>
+                <li style="margin-bottom: 0.3rem;">Handle bulbs with clean hands or gloves</li>
+                <li style="margin-bottom: 0.3rem;">Check beam alignment after installation</li>
+                <li>Ensure adequate airflow around the heat dissipation system</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">AUTO-LEDs</div>
+          <p>Providing High-Performance LED Headlight Solutions</p>
+          <div class="contact-info">
+            <p>Email: wys2704@gmail.com</p>
+          </div>
+          <a href="https://wa.me/8613725549640" class="whatsapp-contact"> <span class="whatsapp-icon">💬</span> WhatsApp Michael: 86 13725549640 </a> <a href="https://wa.me/8613430782337" class="whatsapp-contact"> <span class="whatsapp-icon">💬</span> WhatsApp David: 86 13430782337 </a>
+          <p style="margin-top: 2rem; font-size: 0.9rem;">AUTO-LEDs Product Catalog &copy; 2025</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Common JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

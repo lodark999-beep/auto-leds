@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H15 Series LED Headlight - AUTO-LEDs</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Product Page Specific CSS -->
+    <style>
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin: 2rem 0;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid #1a1a1a;
+            border-radius: 30px;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .back-button:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .product-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .product-title {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-subtitle {
+            font-size: 1.2rem;
+            color: #4da6ff;
+            font-weight: 500;
+        }
+        
+        .product-detail-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .main-content {
+            order: 1;
+        }
+        
+        .sidebar-content {
+            order: 2;
+        }
+        
+        .product-detail {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+        }
+        
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 2rem;
+        }
+        
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .image-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+        
+        .image-description {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #4da6ff;
+        }
+        
+        .image-description h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+        
+        .image-description p {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .specs-sidebar {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .specs-sidebar h3 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #4da6ff;
+        }
+        
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .spec-table th, .spec-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .spec-table th {
+            background-color: transparent;
+            font-weight: 600;
+            color: #444;
+            width: 40%;
+        }
+        
+        .spec-table td {
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+        
+        .compatibility {
+            margin-top: 1.5rem;
+        }
+        
+        .compatibility h4 {
+            margin-bottom: 0.8rem;
+            color: #1a1a1a;
+        }
+        
+        .compatibility p {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            color: #555;
+        }
+        
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #4da6ff;
+            color: #1a1a1a;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .product-features li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            color: #4da6ff;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table th {
+            background-color: #1a1a1a;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .highlight {
+            background-color: rgba(77, 166, 255, 0.1) !important;
+            font-weight: 600;
+        }
+        
+        @media (min-width: 768px) {
+            .product-detail-grid {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+            
+            .sidebar-content {
+                order: 2;
+            }
+            
+            .image-gallery {
+                padding: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .product-title {
+                font-size: 2rem;
+            }
+            
+            .image-gallery {
+                padding: 1rem;
+            }
+            
+            .specs-sidebar {
+                padding: 1.5rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+            }
+            
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .image-description {
+                padding: 1rem;
+            }
+            
+            .feature-card {
+                padding: 1.2rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.8rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-icon">🔦</span> AUTO-LEDs
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Products.html">Product Series</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="Technical Help.html">Technical Help</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Product Details -->
+    <section class="container">
+        <a href="Products.html" class="back-button">&larr; Back to Products</a>
+        
+        <div class="product-header">
+            <h1 class="product-title">H15 Series LED Headlight</h1>
+            <p class="product-subtitle">110W/Set / 12000LM • H15 Socket Optimized</p>
+        </div>
+        
+        <div class="product-detail-grid">
+            <div class="main-content">
+                <div class="product-detail">
+                    <div class="image-gallery">
+                        <!-- Image 1 with description -->
+                        <div class="image-item">
+                            <div class="image-container">
+                                <img src="images/H15.jpg" alt="H15 Series LED Headlight - Front View">
+                            </div>
+                            <div class="image-description">
+                                <h3>3510 Turbo Charged Fan Cooling</h3>
+                                <p>The H15 Series features an advanced 3510 turbo charged fan that provides exceptional cooling performance for sustained high output. This innovative cooling technology ensures optimal thermal management, maintaining consistent brightness and extending the LED lifespan even during extended use in demanding driving conditions.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Image 2 with description -->
+                        <div class="image-item">
+                            <div class="image-container">
+                                <img src="images/H151.jpg" alt="H15 Series LED Headlight - Side View">
+                            </div>
+                            <div class="image-description">
+                                <h3>Optimized H15 Socket Design</h3>
+                                <p>Specifically engineered for vehicles requiring H15 socket compatibility, this series provides a perfect fit without any modifications. The precision-engineered base ensures reliable electrical connection and secure installation, making it the ideal upgrade for vehicles originally equipped with H15 halogen bulbs.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Image 3 with description -->
+                        <div class="image-item">
+                            <div class="image-container">
+                                <img src="images/H154.jpg" alt="H15 Series LED Headlight - Turbo Charged Fan">
+                            </div>
+                            <div class="image-description">
+                                <h3>Excellent Heat Dissipation System</h3>
+                                <p>With advanced thermal management technology, the H15 Series maintains optimal operating temperature for maximum performance and longevity. The combination of the turbo charged fan and efficient heat sink design prevents overheating, ensuring consistent brightness output and reliable operation in all weather conditions.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Image 4 with description -->
+                        <div class="image-item">
+                            <div class="image-container">
+                                <img src="images/H152.jpg" alt="H15 Series LED Headlight - H15 Socket">
+                            </div>
+                            <div class="image-description">
+                                <h3>Vehicle-Specific Compatibility</h3>
+                                <p>Designed exclusively for H15 socket vehicles, this series offers true plug-and-play installation with no additional wiring or modifications required. The H15-specific design ensures perfect compatibility with modern vehicles that utilize this socket configuration for their lighting systems.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Features Section -->
+                <div class="content-section">
+                    <h2 class="section-title">Key Features</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🌀</div>
+                            <h3>3510 Turbo Charged Fan</h3>
+                            <p>Advanced turbo fan technology provides exceptional cooling for sustained high performance</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔌</div>
+                            <h3>Optimized for H15 Socket</h3>
+                            <p>Specifically designed for vehicles requiring H15 socket compatibility</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">❄️</div>
+                            <h3>Excellent Heat Dissipation</h3>
+                            <p>Advanced thermal management system maintains optimal temperature for maximum lifespan</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💡</div>
+                            <h3>High Performance</h3>
+                            <p>110W power delivers 12000LM brightness for excellent road illumination</p>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem;">Additional Features</h3>
+                    <ul class="product-features">
+                        <li>Specifically designed for H15 socket vehicles</li>
+                        <li>High-Efficiency LED chips for optimal performance</li>
+                        <li>IP68 Waterproof rating for all-weather reliability</li>
+                        <li>Wide voltage operation (9-60V) for vehicle compatibility</li>
+                        <li>Instant illumination with no warm-up time required</li>
+                        <li>50,000-hour lifespan for long-term value</li>
+                    </ul>
+                </div>
+                
+                <!-- Comparison Table -->
+                <div class="content-section">
+                    <h2 class="section-title">Performance Comparison</h2>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Standard H15 Halogen</th>
+                                <th>H15 Series LED</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Brightness (Lumens)</td>
+                                <td>1,200 LM</td>
+                                <td class="highlight">12,000 LM</td>
+                            </tr>
+                            <tr>
+                                <td>Power Consumption</td>
+                                <td>55W</td>
+                                <td class="highlight">110W</td>
+                            </tr>
+                            <tr>
+                                <td>Lifespan</td>
+                                <td>1,000 hours</td>
+                                <td class="highlight">50,000 hours</td>
+                            </tr>
+                            <tr>
+                                <td>Color Temperature</td>
+                                <td>3,200K (Yellow)</td>
+                                <td class="highlight">6,000K (White)</td>
+                            </tr>
+                            <tr>
+                                <td>Start-up Time</td>
+                                <td>0.5-1 second</td>
+                                <td class="highlight">Instant</td>
+                            </tr>
+                            <tr>
+                                <td>Cooling System</td>
+                                <td>Passive</td>
+                                <td class="highlight">3510 Turbo Charged Fan</td>
+                            </tr>
+                            <tr>
+                                <td>Heat Dissipation</td>
+                                <td>Standard</td>
+                                <td class="highlight">Excellent</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Vehicle Compatibility Section -->
+                <div class="content-section">
+                    <h2 class="section-title">Vehicle Compatibility</h2>
+                    <p>The H15 Series is specifically designed for vehicles that utilize H15 socket bulbs. Common applications include modern vehicles with advanced lighting systems requiring H15 configuration.</p>
+                    
+                    <h3 style="margin-top: 1.5rem;">Compatible Vehicle Types</h3>
+                    <ul class="product-features">
+                        <li>Modern vehicles with dual-function headlight systems</li>
+                        <li>Vehicles requiring single bulb for both low and high beam functions</li>
+                        <li>Specific models from Audi, Volkswagen, BMW, and Mercedes-Benz</li>
+                        <li>Vehicles with advanced lighting systems using H15 configuration</li>
+                    </ul>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #4da6ff;">
+                        <h4>Important Compatibility Note</h4>
+                        <p>Before purchasing, please verify that your vehicle uses H15 bulbs. Consult your vehicle's owner manual or check your current bulbs to confirm H15 compatibility. The H15 Series is specifically designed for this socket type and will not fit other socket configurations.</p>
+                    </div>
+                </div>
+                
+                <!-- Warranty Information -->
+                <div class="content-section">
+                    <h2 class="section-title">Warranty & Support</h2>
+                    <p>All H15 Series LED headlights come with a 1-year limited warranty covering manufacturing defects. Our customer support team is available to assist with any installation or technical questions.</p>
+                    
+                    <h3 style="margin-top: 1.5rem;">Warranty Coverage</h3>
+                    <ul class="product-features">
+                        <li>1-year limited warranty</li>
+                        <li>Free replacement for manufacturing defects</li>
+                        <li>Technical support available</li>
+                        <li>30-day money-back guarantee</li>
+                        <li>Cooling system performance guarantee</li>
+                        <li>Socket compatibility guarantee</li>
+                    </ul>
+                </div>
+            </div>
+
+            
+            <!-- Sidebar with Specifications -->
+            <div class="sidebar-content">
+                <div class="specs-sidebar">
+                    <h3>Product Specifications</h3>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Luminous Flux</th>
+                            <td>12000LM</td>
+                        </tr>
+                        <tr>
+                            <th>Output Power</th>
+                            <td>110W/Set</td>
+                        </tr>
+                        <tr>
+                            <th>Lifespan</th>
+                            <td>50000 Hours</td>
+                        </tr>
+                        <tr>
+                            <th>Voltage</th>
+                            <td>9–60V</td>
+                        </tr>
+                        <tr>
+                            <th>Color Temperature</th>
+                            <td>6000K</td>
+                        </tr>
+                        <tr>
+                            <th>LED Chip</th>
+                            <td>High-Efficiency LED Chip</td>
+                        </tr>
+                        <tr>
+                            <th>Waterproof Rating</th>
+                            <td>IP68</td>
+                        </tr>
+                        <tr>
+                            <th>Operating Temperature</th>
+                            <td>-40°C to 80°C</td>
+                        </tr>
+                        <tr>
+                            <th>Cooling System</th>
+                            <td>3510 Turbo Charged Fan</td>
+                        </tr>
+                        <tr>
+                            <th>Socket Type</th>
+                            <td>H15</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="compatibility">
+                        <h4>Compatible Vehicles</h4>
+                        <p>H15 socket configuration including Audi Q3/Q5, Volkswagen Golf 7, BMW 1/2 Series, Mercedes-Benz A/B Class</p>
+                    </div>
+                </div>
+                
+                <!-- Installation Guide -->
+                <div class="specs-sidebar">
+                    <h3>Installation Guide</h3>
+                    <p>The H15 Series features true plug-and-play installation specifically designed for H15 socket vehicles.</p>
+                    
+                    <h4 style="margin-top: 1.5rem;">Step-by-Step Installation</h4>
+                    <ol style="margin-left: 1.2rem; color: #555;">
+                        <li style="margin-bottom: 0.5rem;">Disconnect the vehicle battery for safety</li>
+                        <li style="margin-bottom: 0.5rem;">Remove the old H15 halogen bulbs</li>
+                        <li style="margin-bottom: 0.5rem;">Install the H15 Series LED bulbs</li>
+                        <li style="margin-bottom: 0.5rem;">Position the turbo charged fan for optimal airflow</li>
+                        <li style="margin-bottom: 0.5rem;">Ensure secure H15 socket connection</li>
+                        <li>Adjust the beam pattern and test the lights</li>
+                    </ol>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #4da6ff;">
+                        <h4>Installation Tips</h4>
+                        <ul style="margin-left: 1.2rem; color: #555;">
+                            <li style="margin-bottom: 0.3rem;">Verify H15 compatibility before installation</li>
+                            <li style="margin-bottom: 0.3rem;">Ensure proper fan clearance for optimal cooling</li>
+                            <li style="margin-bottom: 0.3rem;">Check beam alignment after installation</li>
+                            <li>The turbo fan operates automatically</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">AUTO-LEDs</div>
+                <p>Providing High-Performance LED Headlight Solutions</p>
+                <div class="contact-info">
+                  <p>Email: wys2704@gmail.com</p>
+                </div>
+                <a href="https://wa.me/8613725549640" class="whatsapp-contact">
+                    <span class="whatsapp-icon">💬</span> WhatsApp Michael: 86 13725549640
+                </a>
+				<a href="https://wa.me/8613430782337" class="whatsapp-contact">
+                    <span class="whatsapp-icon">💬</span> WhatsApp David: 86 13430782337
+                </a>
+                <p style="margin-top: 2rem; font-size: 0.9rem;">AUTO-LEDs Product Catalog &copy; 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Common JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

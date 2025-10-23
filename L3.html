@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H15 Series LED Headlight - AUTO-LEDs</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Product Page Specific CSS -->
+    <style>
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin: 2rem 0;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid #1a1a1a;
+            border-radius: 30px;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .back-button:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .product-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .product-title {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-subtitle {
+            font-size: 1.2rem;
+            color: #4da6ff;
+            font-weight: 500;
+        }
+        
+        .product-detail-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .main-content {
+            order: 1;
+        }
+        
+        .sidebar-content {
+            order: 2;
+        }
+        
+        .product-detail {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+        }
+        
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 2rem;
+        }
+        
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .image-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+        
+        .image-description {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #4da6ff;
+        }
+        
+        .image-description h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+        
+        .image-description p {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .specs-sidebar {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .specs-sidebar h3 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #4da6ff;
+        }
+        
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .spec-table th, .spec-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .spec-table th {
+            background-color: transparent;
+            font-weight: 600;
+            color: #444;
+            width: 40%;
+        }
+        
+        .spec-table td {
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+        
+        .compatibility {
+            margin-top: 1.5rem;
+        }
+        
+        .compatibility h4 {
+            margin-bottom: 0.8rem;
+            color: #1a1a1a;
+        }
+        
+        .compatibility p {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            color: #555;
+        }
+        
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #4da6ff;
+            color: #1a1a1a;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .product-features li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            color: #4da6ff;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table th {
+            background-color: #1a1a1a;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .highlight {
+            background-color: rgba(77, 166, 255, 0.1) !important;
+            font-weight: 600;
+        }
+        
+        @media (min-width: 768px) {
+            .product-detail-grid {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+            
+            .sidebar-content {
+                order: 2;
+            }
+            
+            .image-gallery {
+                padding: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .product-title {
+                font-size: 2rem;
+            }
+            
+            .image-gallery {
+                padding: 1rem;
+            }
+            
+            .specs-sidebar {
+                padding: 1.5rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+            }
+            
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .image-description {
+                padding: 1rem;
+            }
+            
+            .feature-card {
+                padding: 1.2rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.8rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo"> <span class="logo-icon">🔦</span> AUTO-LEDs </div>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Products.html">Product Series</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="Technical Help.html">Technical Help</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section class="container"> <a href="Products.html"class="back-button">&larr; Back to Products</a>
+      <div class="product-header">
+        <h1 class="product-title">L3 Series LED Headlight</h1>
+        <p class="product-subtitle">40W / 4000LM • Intelligent Temperature Control</p>
+      </div>
+      <div class="product-detail-grid">
+        <div>
+          <div class="product-detail">
+            <div class="image-gallery">
+              <!-- Image 1 with description -->
+              <div class="image-item">
+                <div class="image-container"> <img src="images/L30.jpg" alt="L3 Series LED Headlight - Front View"> </div>
+                <div class="image-description">
+                  <h3>Intelligent Temperature Control System</h3>
+                  <p>The L3 Series features an advanced thermal management system that automatically adjusts to maintain optimal operating temperature. This intelligent technology ensures consistent performance and extends the LED lifespan by preventing overheating, even during extended use in demanding conditions.</p>
+                </div>
+              </div>
+              <!-- Image 2 with description -->
+              <div class="image-item">
+                <div class="image-container"> <img src="images/L31.jpg" alt="L3 Series LED Headlight - Side View"> </div>
+                <div class="image-description">
+                  <h3>Stable Voltage Operation</h3>
+                  <p>Engineered for consistent performance across varying voltage conditions (9-60V), the L3 Series eliminates flickering and ensures reliable operation regardless of your vehicle's electrical system fluctuations. This voltage stability guarantees smooth, uninterrupted illumination in all driving scenarios.</p>
+                </div>
+              </div>
+              <!-- Image 3 with description -->
+              <div class="image-item">
+                <div class="image-container"> <img src="images/L32.jpg" alt="L3 Series LED Headlight - Back View"> </div>
+                <div class="image-description">
+                  <h3>Wide Temperature Range Operation</h3>
+                  <p>Built to withstand extreme environmental conditions, the L3 Series operates reliably from -40°C to 80°C. This wide temperature range makes it suitable for all climates and seasons, ensuring dependable performance whether you're driving in freezing winter conditions or hot summer temperatures.</p>
+                </div>
+              </div>
+              <!-- Image 4 with description -->
+              <div class="image-item">
+                <div class="image-container"> <img src="images/L33.jpg" alt="L3 Series LED Headlight - Installation"> </div>
+                <div class="image-description">
+                  <h3>Energy Efficient Performance</h3>
+                  <p>With only 40W power consumption delivering 4000LM brightness, the L3 Series offers excellent energy efficiency. This optimal power-to-light ratio provides significant illumination improvement over standard halogen bulbs while maintaining low energy consumption, making it an eco-friendly and cost-effective lighting solution.</p>
+                </div>
+              </div>
+              <img src="images/L34.jpg" alt="L3 Series LED Headlight - Installation"> </div>
+          </div>
+          <!-- Product Features Section -->
+          <div class="content-section">
+            <h2 class="section-title">Key Features</h2>
+            <div class="feature-grid">
+              <div class="feature-card">
+                <div class="feature-icon">🌡️</div>
+                <h3>Intelligent Temperature Control</h3>
+                <p>Advanced thermal management system automatically adjusts to maintain optimal operating temperature</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Stable Voltage, No Flickering</h3>
+                <p>Consistent performance across varying voltage conditions with no flickering or performance degradation</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Wide Temperature Range</h3>
+                <p>Reliable operation in extreme conditions from -40°C to 80°C</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Energy Efficient</h3>
+                <p>40W power consumption delivers 4000LM brightness for excellent efficiency</p>
+              </div>
+            </div>
+            <h3 style="margin-top: 2rem;">Additional Features</h3>
+            <ul class="product-features">
+              <li>High-Efficiency LED chips for optimal performance</li>
+              <li>IP68 Waterproof rating for all-weather reliability</li>
+              <li>Instant illumination with no warm-up time required</li>
+              <li>Vibration-resistant design for all road conditions</li>
+              <li>Precise beam pattern with no glare for oncoming traffic</li>
+              <li>50,000-hour lifespan for long-term value</li>
+            </ul>
+          </div>
+          <!-- Comparison Table -->
+          <div class="content-section">
+            <h2 class="section-title">Performance Comparison</h2>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Standard Halogen</th>
+                  <th>L3 Series LED</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Brightness (Lumens)</td>
+                  <td>1,200 LM</td>
+                  <td class="highlight">4,000 LM</td>
+                </tr>
+                <tr>
+                  <td>Power Consumption</td>
+                  <td>55W</td>
+                  <td class="highlight">40W</td>
+                </tr>
+                <tr>
+                  <td>Lifespan</td>
+                  <td>1,000 hours</td>
+                  <td class="highlight">50,000 hours</td>
+                </tr>
+                <tr>
+                  <td>Color Temperature</td>
+                  <td>3,200K (Yellow)</td>
+                  <td class="highlight">6,000K (White)</td>
+                </tr>
+                <tr>
+                  <td>Start-up Time</td>
+                  <td>0.5-1 second</td>
+                  <td class="highlight">Instant</td>
+                </tr>
+                <tr>
+                  <td>Temperature Control</td>
+                  <td>None</td>
+                  <td class="highlight">Intelligent System</td>
+                </tr>
+                <tr>
+                  <td>Operating Temp Range</td>
+                  <td>-20°C to 60°C</td>
+                  <td class="highlight">-40°C to 80°C</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Warranty Information -->
+          <div class="content-section">
+            <h2 class="section-title">Warranty & Support</h2>
+            <p>All L3 Series LED headlights come with a 1-year limited warranty covering manufacturing defects. Our customer support team is available to assist with any installation or technical questions.</p>
+            <h3 style="margin-top: 1.5rem;">Warranty Coverage</h3>
+            <ul class="product-features">
+              <li>1-year limited warranty</li>
+              <li>Free replacement for manufacturing defects</li>
+              <li>Technical support available</li>
+              <li>30-day money-back guarantee</li>
+              <li>Temperature control system guarantee</li>
+              <li>Waterproof performance guarantee</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Sidebar with Specifications -->
+        <div>
+          <div class="specs-sidebar">
+            <h3>Product Specifications</h3>
+            <table class="spec-table">
+              <tr>
+                <th>Luminous Flux</th>
+                <td>4000LM</td>
+              </tr>
+              <tr>
+                <th>Output Power</th>
+                <td>40W</td>
+              </tr>
+              <tr>
+                <th>Lifespan</th>
+                <td>50000 Hours</td>
+              </tr>
+              <tr>
+                <th>Voltage</th>
+                <td>9–60V</td>
+              </tr>
+              <tr>
+                <th>Color Temperature</th>
+                <td>6000K</td>
+              </tr>
+              <tr>
+                <th>LED Chip</th>
+                <td>High-Efficiency LED Chip</td>
+              </tr>
+              <tr>
+                <th>Waterproof Rating</th>
+                <td>IP68</td>
+              </tr>
+              <tr>
+                <th>Operating Temperature</th>
+                <td>-40°C to 80°C</td>
+              </tr>
+              <tr>
+                <th>Cooling System</th>
+                <td>Intelligent Temperature Control</td>
+              </tr>
+            </table>
+            <div class="compatibility">
+              <h4>Compatible Vehicles</h4>
+              <p>H1/H3/H4/H7/9005-9006/9012</p>
+            </div>
+          </div>
+          <!-- Installation Guide -->
+          <div class="specs-sidebar">
+            <h3>Installation Guide</h3>
+            <p>Easy plug-and-play installation. Simply remove your old halogen bulbs and replace them with the L3 Series LED headlights.</p>
+            <h4 style="margin-top: 1.5rem;">Step-by-Step Installation</h4>
+            <ol style="margin-left: 1.2rem; color: #555;">
+              <li style="margin-bottom: 0.5rem;">Disconnect the vehicle battery</li>
+              <li style="margin-bottom: 0.5rem;">Remove the old headlight bulbs</li>
+              <li style="margin-bottom: 0.5rem;">Install the L3 Series LED bulbs</li>
+              <li style="margin-bottom: 0.5rem;">Ensure proper connection for intelligent temperature control</li>
+              <li style="margin-bottom: 0.5rem;">Adjust the beam pattern if necessary</li>
+              <li>Reconnect the battery and test the lights</li>
+            </ol>
+            <div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #4da6ff;">
+              <h4>Installation Tips</h4>
+              <ul style="margin-left: 1.2rem; color: #555;">
+                <li style="margin-bottom: 0.3rem;">Ensure the vehicle is turned off before starting</li>
+                <li style="margin-bottom: 0.3rem;">Handle bulbs with clean hands or gloves</li>
+                <li style="margin-bottom: 0.3rem;">Check beam alignment after installation</li>
+                <li>The intelligent temperature control works automatically</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+        <!-- Navigation -->
+    <!-- Product Details -->
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">AUTO-LEDs</div>
+                <p>Providing High-Performance LED Headlight Solutions</p>
+                <div class="contact-info">
+                  <p>Email: wys2704@gmail.com</p>
+                </div>
+                <a href="https://wa.me/8613725549640" class="whatsapp-contact">
+                    <span class="whatsapp-icon">💬</span> WhatsApp Michael: 86 13725549640
+                </a>
+				<a href="https://wa.me/8613430782337" class="whatsapp-contact">
+                    <span class="whatsapp-icon">💬</span> WhatsApp David: 86 13430782337
+                </a>
+                <p style="margin-top: 2rem; font-size: 0.9rem;">AUTO-LEDs Product Catalog &copy; 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Common JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

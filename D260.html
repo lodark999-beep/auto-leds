@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D90 Series LED Headlight - AUTO-LEDs</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* D90 Page Specific Styles */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin: 2rem 0;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid #1a1a1a;
+            border-radius: 30px;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .back-button:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .product-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .product-title {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-subtitle {
+            font-size: 1.2rem;
+            color: #4da6ff;
+            font-weight: 500;
+        }
+        
+        .product-detail {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+        }
+        
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            height: 400px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-indicator.active {
+            background-color: white;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-nav:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .carousel-prev {
+            left: 15px;
+        }
+        
+        .carousel-next {
+            right: 15px;
+        }
+        
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 2rem;
+        }
+        
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .image-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+        
+        .image-description {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #4da6ff;
+        }
+        
+        .image-description h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+        
+        .image-description p {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .specs-sidebar {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .specs-sidebar h3 {
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #4da6ff;
+        }
+        
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .spec-table th, .spec-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .spec-table th {
+            background-color: transparent;
+            font-weight: 600;
+            color: #444;
+            width: 40%;
+        }
+        
+        .spec-table td {
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+        
+        .compatibility {
+            margin-top: 1.5rem;
+        }
+        
+        .compatibility h4 {
+            margin-bottom: 0.8rem;
+            color: #1a1a1a;
+        }
+        
+        .compatibility p {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            color: #555;
+        }
+        
+        /* Multi-frame content sections */
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #4da6ff;
+            color: #1a1a1a;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            color: #4da6ff;
+        }
+        
+        .feature-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+        }
+        
+        .product-features {
+
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .product-features li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            color: #4da6ff;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table th {
+            background-color: #1a1a1a;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .highlight {
+            background-color: rgba(77, 166, 255, 0.1) !important;
+            font-weight: 600;
+        }
+        
+        /* Product Detail Grid */
+        .product-detail-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .main-content {
+            order: 1;
+        }
+        
+        .sidebar-content {
+            order: 2;
+        }
+        
+        @media (min-width: 768px) {
+            .product-detail-grid {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+            
+            .sidebar-content {
+                order: 2;
+            }
+            
+            .image-gallery {
+                padding: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .product-title {
+                font-size: 2rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .image-gallery {
+                padding: 1rem;
+            }
+            
+            .specs-sidebar {
+                padding: 1.5rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .image-description {
+                padding: 1rem;
+            }
+            
+            .feature-card {
+                padding: 1.2rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.8rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-icon">🔦</span> AUTO-LEDs
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Products.html">Product Series</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="Technical Help.html">Technical Help</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Product Details -->
+    <section class="container">
+        <a href="Products.html" class="back-button">&larr; Back to Products</a>
+        
+        <div class="product-header">
+            <h1 class="product-title">D260 Series LED Headlight</h1>
+            <p class="product-subtitle">260W / 22000LM • Maximum Power Performance</p>
+        </div>
+        
+        <div class="product-detail-grid">
+            <div>
+                <div class="product-detail">
+                    <div class="image-gallery">
+                        <!-- Carousel -->
+                        <div class="carousel-container">
+                            <div class="carousel">
+                                <div class="carousel-slide">
+                                    <img src="images/D-260W.jpg" alt="D260 Series LED Headlight - Front View">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="images/D2202.jpg" alt="D260 Series LED Headlight - Side View">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="images/D2203.jpg" alt="D260 Series LED Headlight - Intelligent Driver">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="images/D2204.jpg" alt="D260 Series LED Headlight - Cooling System">
+                                </div>
+                            </div>
+                            
+                            <!-- Navigation buttons -->
+                            <button class="carousel-nav carousel-prev">&#10094;</button>
+                            <button class="carousel-nav carousel-next">&#10095;</button>
+                            
+                            <!-- Indicators -->
+                            <div class="carousel-controls">
+                                <span class="carousel-indicator active" data-index="0"></span>
+                                <span class="carousel-indicator" data-index="1"></span>
+                                <span class="carousel-indicator" data-index="2"></span>
+                                <span class="carousel-indicator" data-index="3"></span>
+                            </div>
+                        </div>
+                        
+                        <!-- Image descriptions -->
+                        <div class="image-item">
+                            <div class="image-description">
+                                <h3>500% High Brightness</h3>
+                                <p>The D260 Series delivers exceptional 22000LM output, providing 500% more brightness than standard halogen bulbs. This extreme-grade illumination ensures maximum visibility in all driving conditions, making it ideal for heavy-duty applications and extreme environments where standard lighting is completely inadequate.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="image-item">
+                            <div class="image-description">
+                                <h3>Intelligent Decoding Driver</h3>
+                                <p>Featuring an advanced built-in intelligent decoding driver, the D260 Series ensures seamless integration with modern vehicle electronics. This smart driver prevents error codes and warning lights on modern vehicles with CAN-BUS systems, providing stable performance across varying voltage conditions with no flickering.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="image-item">
+                            <div class="image-description">
+                                <h3>Efficient Cooling System</h3>
+                                <p>The D260 Series incorporates an advanced thermal management system specifically designed to handle the extreme thermal output of 260W operation. Enhanced heat dissipation and intelligent thermal control maintain optimal LED temperature for maximum lifespan and sustained high-power output without performance degradation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="image-item">
+                            <div class="image-description">
+                                <h3>Ultimate Performance</h3>
+                                <p>With 260W power consumption and 22000 lumens output, the D260 Series represents the ultimate in LED headlight technology. Designed for commercial trucks, off-road racing, emergency vehicles, and extreme environments, it provides illumination comparable to professional racing and industrial lighting systems.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Features Section -->
+                <div class="content-section">
+                    <h2 class="section-title">Key Features</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">💡</div>
+                            <h3>500% High Brightness</h3>
+                            <p>Exceptional 22000LM output delivers 500% more brightness than standard halogen bulbs</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🧠</div>
+                            <h3>Intelligent Decoding Driver</h3>
+                            <p>Built-in smart driver ensures compatibility with modern vehicle electrical systems</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">❄️</div>
+                            <h3>Efficient Cooling System</h3>
+                            <p>Advanced thermal management maintains optimal performance and extends lifespan</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Ultimate Performance</h3>
+                            <p>260W power delivers 22000LM brightness for maximum road illumination</p>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem;">Additional Features</h3>
+                    <ul class="product-features">
+                        <li>CAN-BUS compatibility prevents error codes</li>
+                        <li>Built-in protection against short circuits and over-voltage</li>
+                        <li>Advanced cooling fins for maximum heat dissipation</li>
+                        <li>IP68 Waterproof rating for all-weather performance</li>
+                        <li>Instant illumination with no warm-up time</li>
+                        <li>Robust construction for extreme operating conditions</li>
+                    </ul>
+                </div>
+                
+                <!-- Maximum Power Performance Section -->
+                <div class="content-section">
+                    <h2 class="section-title">Maximum Power Performance</h2>
+                    <p>The D260 Series represents the ultimate in LED headlight technology, delivering extreme-grade illumination for the most demanding applications.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3>Extreme Brightness</h3>
+                            <p>22000 lumens provide unparalleled visibility in all driving conditions</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Heavy-Duty Applications</h3>
+                            <p>Designed for commercial trucks, off-road racing, and extreme environments</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Maximum Range</h3>
+                            <p>Powerful beam pattern provides exceptional long-distance visibility</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Sustained Output</h3>
+                            <p>Maintains peak brightness even during continuous operation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Intelligent Driver Section -->
+                <div class="content-section">
+                    <h2 class="section-title">Intelligent Decoding Driver Technology</h2>
+                    <p>The D260 Series features an advanced built-in intelligent decoding driver that ensures seamless integration with modern vehicle electronics.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3>CAN-BUS Compatibility</h3>
+                            <p>Intelligent driver prevents error codes and warning lights on modern vehicles</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Voltage Regulation</h3>
+                            <p>Stable performance across varying voltage conditions with no flickering</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Plug & Play</h3>
+                            <p>No additional resistors or wiring modifications required for installation</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Protection Circuits</h3>
+                            <p>Built-in safeguards against short circuits, over-voltage, and reverse polarity</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Comparison Table -->
+                <div class="content-section">
+                    <h2 class="section-title">Performance Comparison</h2>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Standard Halogen</th>
+                                <th>D260 Series LED</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Brightness (Lumens)</td>
+                                <td>1,200 LM</td>
+                                <td class="highlight">22,000 LM</td>
+                            </tr>
+                            <tr>
+                                <td>Power Consumption</td>
+                                <td>55W</td>
+                                <td class="highlight">130W</td>
+                            </tr>
+                            <tr>
+                                <td>Lifespan</td>
+                                <td>1,000 hours</td>
+                                <td class="highlight">50,000 hours</td>
+                            </tr>
+                            <tr>
+                                <td>Color Temperature</td>
+                                <td>3,200K (Yellow)</td>
+                                <td class="highlight">6,000K (White)</td>
+                            </tr>
+                            <tr>
+                                <td>Start-up Time</td>
+                                <td>0.5-1 second</td>
+                                <td class="highlight">Instant</td>
+                            </tr>
+                            <tr>
+                                <td>Driver System</td>
+                                <td>None</td>
+                                <td class="highlight">Intelligent Decoding Driver</td>
+                            </tr>
+                            <tr>
+                                <td>Vehicle Compatibility</td>
+                                <td>Limited</td>
+                                <td class="highlight">Universal with CAN-BUS Support</td>
+                            </tr>
+                            <tr>
+                                <td>Brightness Increase</td>
+                                <td>Reference</td>
+                                <td class="highlight">500% Brighter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Application Scenarios -->
+                <div class="content-section">
+                    <h2 class="section-title">Recommended Applications</h2>
+                    <p>The D260 Series is designed for extreme and professional applications where maximum illumination is required.</p>
+                    
+                    <ul class="product-features">
+                        <li>Heavy-duty commercial trucks and transport vehicles</li>
+                        <li>Off-road racing and extreme adventure vehicles</li>
+                        <li>Emergency and first responder vehicles</li>
+                        <li>Agricultural, construction, and mining equipment</li>
+                        <li>Long-distance highway driving in remote areas</li>
+                        <li>Any application requiring maximum possible visibility</li>
+                    </ul>
+                    
+                    <h3>Extreme Performance</h3>
+                    <p>With 260W power and 22000 lumens output, the D260 Series provides illumination comparable to professional racing and industrial lighting systems, making it ideal for the most demanding applications where standard lighting is completely inadequate.</p>
+                </div>
+                
+                <!-- Cooling System Section -->
+                <div class="content-section">
+                    <h2 class="section-title">Advanced Cooling Technology</h2>
+                    <p>The D260 Series features an innovative cooling system specifically designed to handle the extreme thermal output of 260W operation.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3>Enhanced Heat Dissipation</h3>
+                            <p>Advanced cooling fins and thermal management for maximum heat dissipation</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Temperature Regulation</h3>
+                            <p>Intelligent thermal control maintains optimal LED temperature for maximum lifespan</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Robust Construction</h3>
+                            <p>Heavy-duty materials withstand extreme operating conditions</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Continuous Operation</h3>
+                            <p>Designed for sustained high-power output without performance degradation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Warranty Information -->
+                <div class="content-section">
+                    <h2 class="section-title">Warranty & Support</h2>
+                    <p>All D260 Series LED headlights come with a 1-year limited warranty covering manufacturing defects. Our customer support team is available to assist with any installation or technical questions.</p>
+                    
+                    <h3 style="margin-top: 1.5rem;">Warranty Coverage</h3>
+                    <ul class="product-features">
+                        <li>1-year limited warranty</li>
+                        <li>Free replacement for manufacturing defects</li>
+                        <li>Technical support available</li>
+                        <li>30-day money-back guarantee</li>
+                        <li>Intelligent driver performance guarantee</li>
+                        <li>Cooling system performance guarantee</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Sidebar with Specifications -->
+            <div>
+                <div class="specs-sidebar">
+                    <h3>Product Specifications</h3>
+                    <table class="spec-table">
+                        <tr>
+                            <th>Luminous Flux</th>
+                            <td>22000LM</td>
+                        </tr>
+                        <tr>
+                            <th>Output Power</th>
+                            <td>260W</td>
+                        </tr>
+                        <tr>
+                            <th>Lifespan</th>
+                            <td>50000 Hours</td>
+                        </tr>
+                        <tr>
+                            <th>Voltage</th>
+                            <td>9–60V</td>
+                        </tr>
+                        <tr>
+                            <th>Color Temperature</th>
+                            <td>6000K</td>
+                        </tr>
+                        <tr>
+                            <th>LED Chip</th>
+                            <td>High-Performance LED Chip</td>
+                        </tr>
+                        <tr>
+                            <th>Waterproof Rating</th>
+                            <td>IP68</td>
+                        </tr>
+                        <tr>
+                            <th>Operating Temperature</th>
+                            <td>-40°C to 80°C</td>
+                        </tr>
+                        <tr>
+                            <th>Driver System</th>
+                            <td>Built-in Intelligent Decoding Driver</td>
+                        </tr>
+                        <tr>
+                            <th>Cooling System</th>
+                            <td>Advanced Thermal Management</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="compatibility">
+                        <h4>Compatible Vehicles</h4>
+                        <p>H1/H3/H4/H7/H11/H13/880-881/9004-9007/9005/9006/9012</p>
+                    </div>
+                </div>
+                
+                <!-- Installation Guide -->
+                <div class="specs-sidebar">
+                    <h3>Installation Guide</h3>
+                    <p>The D260 Series features true plug-and-play installation with intelligent driver technology that eliminates compatibility issues.</p>
+                    
+                    <h4 style="margin-top: 1.5rem;">Step-by-Step Installation</h4>
+                    <ol style="margin-left: 1.2rem; color: #555;">
+                        <li style="margin-bottom: 0.5rem;">Disconnect the vehicle battery for safety</li>
+                        <li style="margin-bottom: 0.5rem;">Remove the old headlight bulbs from their sockets</li>
+                        <li style="margin-bottom: 0.5rem;">Install the D260 Series LED bulbs - the intelligent driver ensures proper connection</li>
+                        <li style="margin-bottom: 0.5rem;">Ensure the advanced cooling system has adequate airflow</li>
+                        <li style="margin-bottom: 0.5rem;">Adjust the beam pattern for optimal road coverage</li>
+                        <li style="margin-bottom: 0.5rem;">Reconnect the battery and test the lights</li>
+                        <li>No error code configuration required - the intelligent driver handles compatibility</li>
+                    </ol>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 8px; border-left: 4px solid #4da6ff;">
+                        <h4>Professional Installation Note</h4>
+                        <p>Due to the extreme power output of the D260 Series, ensure your vehicle's electrical system can support the increased load. Most modern heavy-duty vehicles are compatible, but consult your vehicle's specifications if unsure. For optimal performance, consider upgrading your vehicle's wiring if necessary.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">AUTO-LEDs</div>
+                <p>Providing High-Performance LED Headlight Solutions</p>
+                <div class="contact-info">
+                  <p>Email: wys2704@gmail.com</p>
+                </div>
+                <a href="https://wa.me/8613725549640" class="whatsapp-contact">
+                    <span class="whatsapp-icon">💬</span> WhatsApp Michael: 86 13725549640
+                </a>
+				<a href="https://wa.me/8613430782337" class="whatsapp-contact">
+                    <span class="whatsapp-icon">💬</span> WhatsApp David: 86 13430782337
+                </a>
+                <p style="margin-top: 2rem; font-size: 0.9rem;">AUTO-LEDs Product Catalog &copy; 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Common JS -->
+    <script src="js/script.js"></script>
+    
+    <!-- Product Page Specific JS -->
+    <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+            
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+            
+            // Function to update carousel position
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Next slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            }
+            
+            // Previous slide
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+            
+            // AUTO-advance slides every 5 seconds
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            // Event listeners
+            nextBtn.addEventListener('click', function() {
+                clearInterval(slideInterval);
+                nextSlide();
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                clearInterval(slideInterval);
+                prevSlide();
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+            
+            // Indicator clicks
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', function() {
+                    clearInterval(slideInterval);
+                    currentIndex = parseInt(this.getAttribute('data-index'));
+                    updateCarousel();
+                    slideInterval = setInterval(nextSlide, 5000);
+                });
+            });
+            
+            // Pause on hover
+            carousel.parentElement.addEventListener('mouseenter', function() {
+                clearInterval(slideInterval);
+            });
+            
+            carousel.parentElement.addEventListener('mouseleave',
+</html>

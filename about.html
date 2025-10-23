@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AUTO-LEDs</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') 
+                        center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 8rem 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .about-hero .container {
+            width: 100%;
+        }
+        
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .about-hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* About Content Section */
+        .about-content {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+            position: relative;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #4da6ff;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover {
+            transform: translateY(-10px);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Values Section */
+        .values-section {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #4da6ff;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: #4da6ff;
+        }
+        
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #4da6ff;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.1);
+        }
+        
+        .value-card h3 {
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            font-size: 1.4rem;
+        }
+        
+        .value-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+        
+        .team-member {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover .member-photo {
+            border-color: #4da6ff;
+            box-shadow: 0 15px 30px rgba(77, 166, 255, 0.2);
+        }
+        
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover .member-photo img {
+            transform: scale(1.05);
+        }
+        
+        .member-info h3 {
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            font-size: 1.3rem;
+        }
+        
+        .member-info p {
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+
+        .member-info p:last-of-type {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Mission Section */
+        .mission-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1558618666-fcd25856cd63?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            opacity: 0.1;
+        }
+        
+        .mission-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .mission-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        
+        .mission-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #e0e0e0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 5rem 1rem;
+                min-height: 50vh;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-text h2 {
+                font-size: 2rem;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .member-photo {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .mission-section h2 {
+                font-size: 2rem;
+            }
+            
+            .mission-section p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-icon">🔦</span> AUTO-LEDs
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Products.html">Product Series</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="Technical Help.html">Technical Help</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Us Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About AUTO-LEDs</h1>
+            <p>Leading the way in automotive lighting innovation since 2015</p>
+        </div>
+    </section>
+
+    <!-- About Content Section -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>AUTO-LEDs was founded in 2015 with a simple mission: to revolutionize automotive lighting through cutting-edge LED technology. Our journey began when our founder, an automotive engineer with over 15 years of experience, noticed the limitations of traditional halogen and HID headlights.</p>
+                    <p>Frustrated by the poor performance and short lifespan of existing options, he assembled a team of engineers and lighting specialists to develop a new generation of LED headlights that would outperform anything on the market.</p>
+                    <p>Today, we serve customers in over 30 countries, providing high-performance LED lighting solutions for all types of vehicles - from compact cars to heavy-duty trucks. Our commitment to quality, innovation, and customer satisfaction has made us a trusted name in the automotive lighting industry.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/us.jpg" alt="AUTO-LEDs manufacturing facility" onerror="this.src='https://images.unsplash.com/photo-1565696916759-ef55cfc13a8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title">Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h3>Innovation</h3>
+                    <p>We continuously push the boundaries of LED technology, developing smarter, more efficient lighting solutions that set new industry standards.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Performance</h3>
+                    <p>Every product we create is engineered for maximum brightness, longevity, and reliability under the most demanding conditions.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🛡️</div>
+                    <h3>Quality</h3>
+                    <p>We never compromise on materials or manufacturing processes, ensuring our products deliver exceptional performance and durability.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Customer Focus</h3>
+                    <p>We listen to our customers' needs and feedback, using their insights to drive our product development and service improvements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Our Leadership Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="images/2211.jpg" alt="CEO Photo" onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
+                    </div>
+                    <div class="member-info">
+                        <h3>David Chen</h3>
+                        <p>Founder & CEO</p>
+                        <p>15+ years in automotive engineering</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="images/2212.jpg" alt="CTO Photo" onerror="this.src='https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sarah Lin</h3>
+                        <p>Chief Technology Officer</p>
+                        <p>LED technology specialist</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="images/111231.jpg" alt="R&D Head Photo" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
+                    </div>
+                    <div class="member-info">
+                        <h3>Michael Wu</h3>
+                        <p>Head of R&D</p>
+                        <p>Innovation and product development</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p>To enhance road safety and driving experience worldwide by providing superior LED lighting solutions that combine cutting-edge technology, exceptional performance, and unmatched reliability.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">AUTO-LEDs</div>
+                <p>Providing High-Performance LED Headlight Solutions</p>
+                <div class="contact-info">
+                    <p>Email: wys2704@gmail.com</p>
+                </div>
+                <a href="https://wa.me/8613725549640" class="whatsapp-contact">
+                    <span class="whatsapp-icon">💬</span> WhatsApp Michael: 86 13725549640
+                </a>
+                <a href="https://wa.me/8613430782337" class="whatsapp-contact">
+                    <span class="whatsapp-icon">💬</span> WhatsApp David: 86 13430782337
+                </a>
+                <p style="margin-top: 2rem; font-size: 0.9rem;">AUTO-LEDs Product Catalog &copy; 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Common JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
